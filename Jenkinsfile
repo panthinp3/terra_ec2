@@ -27,19 +27,20 @@ pipeline{
       }
     }
     
-    stage ("Test"){
+    stage ("Terraform Plan"){
       steps{
-        echo "User: ${params.User}"
-        echo "Version: ${params.Version}"
-        echo 'This is test stage'
+        sh 'terraform plan'
       }
     }
     
-    stage ("Prod"){
+    
+    stage ("Terraform Apply"){
       steps{
-        echo 'This is prod stage'
+        sh 'terraform plan -auto-approve'
       }
     }
+    
+    
     
     
   }
