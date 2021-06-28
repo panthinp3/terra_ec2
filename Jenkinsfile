@@ -30,17 +30,17 @@ pipeline{
     
     stage ("Terraform Init"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]){
-           sh 'terraform init'
-        }
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS Terra User', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+            sh 'terraform init'
+          }
       }
     }
     
     
     stage ("Terraform Plan"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]){
-           sh 'terraform plan'
+       withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS Terra User', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+            sh 'terraform plan'
           }
         }
     }
@@ -48,8 +48,8 @@ pipeline{
     
     stage ("Terraform Apply"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]){
-           sh 'terraform plan -auto-approve'
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS Terra User', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+            sh 'terraform apply -auto-approve'
           }
         }
     }
