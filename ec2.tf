@@ -4,6 +4,6 @@ resource "aws_instance" "ec2-01" {
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     tags ={
-        Name= "Dev"
+        Name= "Jenkins-demo"
         }
     }
