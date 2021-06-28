@@ -30,7 +30,7 @@ pipeline{
     
     stage ("Terraform Init"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]{
+        withCredentials([string (credentialsId: 'AWS Terra User')]){
            sh 'terraform init'
         }
       }
@@ -39,7 +39,7 @@ pipeline{
     
     stage ("Terraform Plan"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]{
+        withCredentials([string (credentialsId: 'AWS Terra User')]){
            sh 'terraform plan'
           }
         }
@@ -48,7 +48,7 @@ pipeline{
     
     stage ("Terraform Apply"){
       steps{
-        withCredentials([string (credentialsId: 'AWS Terra User')]{
+        withCredentials([string (credentialsId: 'AWS Terra User')]){
            sh 'terraform plan -auto-approve'
           }
         }
